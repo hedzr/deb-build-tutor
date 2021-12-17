@@ -1,0 +1,58 @@
+#!/bin/sh -e
+
+set -e
+
+# ref: postinst in sudo package
+
+case "$1" in
+configure)
+  for f in $(ls -b /usr/lib/faker/man/man1/*.1.gz); do
+    fn=$(basename $f)
+    #echo "  . f=$f, fn=$fn"
+    if [ ! -L /usr/share/man/man1/$fn ]; then
+      ln -s $f /usr/share/man/man1/$fn
+    fi
+  done
+
+  if [ ! -L /usr/bin/faker ]; then
+    ln -s /usr/lib/faker/bin/faker /usr/bin/
+  fi
+
+  if [ -d /etc/bash_completion.d ]; then
+    if [ ! -L /etc/bash_completion.d/faker ]; then
+      ln -s /usr/lib/faker/completions/bash/faker /etc/bash_completion.d/
+    fi
+  fi
+
+  if [ -x /bin/zsh ]; then
+    if [ ! -d /usr/local/share/zsh/site-functions ]; then
+      mkdir -pv /usr/local/share/zsh/site-functions
+    fi
+    if [ -d /usr/share/zsh/site-functions ]; then
+      if [ ! -L /usr/share/zsh/site-functions/_faker ]; then
+        ln -s /usr/lib/faker/completions/zsh/_faker /usr/share/zsh/site-functions/
+      fi
+    elif [ -d /usr/local/share/zsh/site-functions ]; then
+      if [ ! -L /usr/local/share/zsh/site-functions/_faker ]; then
+        ln -s /usr/lib/faker/completions/zsh/_faker /usr/local/share/zsh/site-functions/
+      fi
+    fi
+  fi
+
+  [ -d /etc/faker ] || ln -s /usr/lib/faker/etc/faker /etc/
+  ;;
+
+abort-remove)
+  [ -L /usr/bin/faker ] && rm -rf /usr/bin/faker
+
+  for f in /usr/share/man/man1/faker-*.1.gz; do
+    [ -L $f ] && rm -rf $f
+  done
+  [ -L /usr/share/man/man1/faker.1.gz ] && rm -rf /usr/share/man/man1/faker.1.gz
+
+  [ -L /etc/bash_completion.d/faker ] && rm -rf /etc/bash_completion.d/faker
+  [ -L /usr/share/zsh/site-functions/_faker ] && rm -rf /usr/share/zsh/site-functions/_faker
+  [ -L /usr/local/share/zsh/site-functions/_faker ] && rm -rf /usr/local/share/zsh/site-functions/_faker
+  ;;
+
+esac

@@ -1,0 +1,537 @@
+#compdef _faker faker
+#
+# version: 0.2.5
+#
+# Copyright (c) 2019-2025 Cmdr-(go) Authors
+# All rights reserved.
+#
+#  Zsh completion script for cmdr-series CLI apps (https://github.com/topics/cmdr).
+#
+#  Status: See FIXME and TODO tags.
+#
+#  Source: https://github.com/zsh-users/zsh-completions
+#
+#  Description:
+#
+#    Generated with 'faker gen zsh' for cmdr version 0.2.5
+#
+#    To install, move/rename this file as $HOME/.zsh-completions/_faker
+#    and edit your .zshrc file to include these lines (uncommented):
+# 
+#    fpath=($HOME/.zsh-completions $fpath)
+# 
+#    autoload -U compinit
+#    compinit
+#
+# ------------------------------------------------------------------------------
+# -*- mode: zsh; sh-indentation: 2; indent-tabs-mode: nil; sh-basic-offset: 2; -*-
+# vim: ft=zsh sw=2 ts=2 et
+# ------------------------------------------------------------------------------
+
+
+# autoload
+# typeset -A opt_args
+autoload -U is-at-least
+
+# reload_zsh_autocomp
+# reset_zsh_autocomp
+# unfunction _faker && autoload -U _faker
+# find_zsh_autocomp_script _faker
+
+__faker_debug() {
+    local altfile=""
+    [[ ${ENABLE_ZSH_AUTOCOMP_DEBUG:-0} -ne 0 ]] && altfile=/tmp/1 && touch $altfile
+    local file="${BASH_COMP_DEBUG_FILE:-$altfile}"
+    if [[ -n ${file} ]]; then
+        echo "$@" >> "${file}"
+    fi
+}
+
+
+_faker() {
+    typeset -A opt_args
+    local -a commands
+    local context curcontext="$curcontext" line state ret=0
+    local I="-h --help --version -V -#"
+
+    _arguments -s -C : \
+               "1: :->cmds" \
+               "*::arg:->args" \
+                "($I -plain --plain -json-compact --json-compact -json --json -yaml --yaml)"'*-plain''[output with plain format]' \
+                "($I -plain --plain -json-compact --json-compact -json --json -yaml --yaml)"'*-json-compact''[output with json format]' \
+                "($I -plain --plain -json-compact --json-compact -json --json -yaml --yaml)"'*-json''[output with json pretty format]' \
+                "($I -plain --plain -json-compact --json-compact -json --json -yaml --yaml)"'*-yaml''[output with yaml format]' \
+                "($I -tr --trace)"'*-tr''[enable trace mode for tcp/mqtt send/recv data dump]' \
+                "($I - *)"'-V''[Show the version of this app.]' \
+                "($I --version-sim=)"'*--version-sim=''[Simulate a faked version number for this app.]' \
+                "($I - *)"'-#''[Show the building information of this app.]' \
+                "($I - *)"'-h''[Show this help screen]' \
+                "($I --help-zsh=)"'*--help-zsh=''[show help with zsh completion format, or others]' \
+                "($I --help-bash=)"'*--help-bash=''[show help with bash completion format, or others]' \
+                "($I --tree)"'*--tree''[show a tree for all commands]' \
+                "($I --config=)"'*--config=''[load config files from where you specified]' \
+                "($I -v --verbose)"'*-v''[Show more progress/debug info]' \
+                "($I -q --quiet)"'*-q''[No more screen output]' \
+                "($I -D --debug)"'*-D''[Get into debug mode.]' \
+                "($I --debug-output=)"'*--debug-output=''[store the ~~debug outputs into file.]' \
+                "($I --env)"'*--env''[Dump environment info in **~~debug** mode.]' \
+                "($I --raw)"'*--raw''[Dump the option value in raw mode (with golang data structure, without envvar expanding).]' \
+                "($I --value-type)"'*--value-type''[Dump the option value type.]' \
+                "($I --more)"'*--more''[Dump more info in **~~debug** mode.]' \
+                "($I --strict-more)"'*--strict-more''[strict mode for **cmdr**.]' \
+                "($I --no-env-overrides)"'*--no-env-overrides''[No env var overrides for **cmdr**.]' \
+                "($I -nc --no-color)"'*-nc''[No color output for **cmdr**.]' \
+               \
+               && ret=0
+    case "$state" in
+        cmds)
+            commands=(
+                {a,addr}':generate address'
+                {app,app}':generate app names'
+                {av,avatar}':generate Avatar names'
+                {btc,bitcoin}':generate Bitcoin (BTC) names'
+                {bz,business}':generate Business names'
+                {c,code}':generate Codes (ISBN10, ISBN13, EAN13, EAN8, RUT, ABN)'
+                {cc,commerce}':generate Commerce names'
+                {co,company}':generate Company names'
+                {f,finance}':generate Finance names (visa, mastercard, ...)'
+                {hh,hacker}':generate Hacker names'
+                {hp,hacker-phrases}':generate Hacker Phrases names'
+                {hhc,hacker-phrases-colored}':generate Colored Hacker Phrases names'
+                {hhp,hacker-phrases-colored-piped}':generate Colored Hacker Phrases names, let''s work as a pipe'
+                {i,internet}':generate Internet names'
+                {l,lorem}':generate Lorem text'
+                {n,name}':generate Name'
+                {num,number}':generate a number'
+                {pn,phone-number}':generate PhoneNumber record'
+                {t,team}':generate Team record'
+                version':Show the version of this app.'
+                {g,generate}':generators for this app.'
+            )
+            __faker_debug "_describe '[faker]': ${commands[@]}"
+            _describe -t commands '[faker] commands' commands "$@"
+            ;;
+        args)
+            case $line[1] in
+            a|addr|address)
+                __faker_addr
+                ;;
+            app)
+                __faker_app
+                ;;
+            av|avatar)
+                __faker_avatar
+                ;;
+            btc|bitcoin)
+                __faker_bitcoin
+                ;;
+            bz|business|biz|credit_card)
+                __faker_business
+                ;;
+            c|code|codes)
+                __faker_code
+                ;;
+            cc|commerce)
+                __faker_commerce
+                ;;
+            co|company|corp)
+                __faker_company
+                ;;
+            f|finance|fin)
+                __faker_finance
+                ;;
+            hh|hacker|hack)
+                __faker_hacker
+                ;;
+            hp|hacker_phrases)
+                __faker_hacker_phrases
+                ;;
+            hhc|hacker_phrases_colored)
+                __faker_hacker_phrases_colored
+                ;;
+            hhp|hacker_phrases_colored_piped)
+                __faker_hacker_phrases_colored_piped
+                ;;
+            i|internet)
+                __faker_internet
+                ;;
+            l|lorem)
+                __faker_lorem
+                ;;
+            n|name)
+                __faker_name
+                ;;
+            num|number)
+                __faker_number
+                ;;
+            pn|phone_number)
+                __faker_phone_number
+                ;;
+            t|team)
+                __faker_team
+                ;;
+            version|ver|versions)
+                __faker_version
+                ;;
+            g|generate|gen)
+                __faker_generate
+                ;;
+
+            esac
+            ;;
+    esac
+}
+
+__faker_addr() {
+    typeset -A opt_args
+    local context curcontext="$curcontext" state line ret=0
+    local I="-h --help --version -V -#"
+    local -a commands
+    _arguments -s \
+                "($I --BuildingNumber --ZipCode --CityPrefix --StateAbbr --CountryCode --Latitude -sn --street-name --street-address --Longitude --Postcode --Country --ZipCodeByState --CitySuffix -c --city --secondary-address --StreetSuffix --State --String --PostcodeByState --TimeZone)"'*--BuildingNumber''[generates BuildingNumber field]' \
+                "($I --BuildingNumber --ZipCode --CityPrefix --StateAbbr --CountryCode --Latitude -sn --street-name --street-address --Longitude --Postcode --Country --ZipCodeByState --CitySuffix -c --city --secondary-address --StreetSuffix --State --String --PostcodeByState --TimeZone)"'*--ZipCode''[generates ZipCode field]' \
+                "($I --BuildingNumber --ZipCode --CityPrefix --StateAbbr --CountryCode --Latitude -sn --street-name --street-address --Longitude --Postcode --Country --ZipCodeByState --CitySuffix -c --city --secondary-address --StreetSuffix --State --String --PostcodeByState --TimeZone)"'*--CityPrefix''[generates CityPrefix field]' \
+                "($I --BuildingNumber --ZipCode --CityPrefix --StateAbbr --CountryCode --Latitude -sn --street-name --street-address --Longitude --Postcode --Country --ZipCodeByState --CitySuffix -c --city --secondary-address --StreetSuffix --State --String --PostcodeByState --TimeZone)"'*--StateAbbr''[generates StateAbbr field]' \
+                "($I --BuildingNumber --ZipCode --CityPrefix --StateAbbr --CountryCode --Latitude -sn --street-name --street-address --Longitude --Postcode --Country --ZipCodeByState --CitySuffix -c --city --secondary-address --StreetSuffix --State --String --PostcodeByState --TimeZone)"'*--CountryCode''[generates CountryCode field]' \
+                "($I --BuildingNumber --ZipCode --CityPrefix --StateAbbr --CountryCode --Latitude -sn --street-name --street-address --Longitude --Postcode --Country --ZipCodeByState --CitySuffix -c --city --secondary-address --StreetSuffix --State --String --PostcodeByState --TimeZone)"'*--Latitude''[generates Latitude field]' \
+                "($I --BuildingNumber --ZipCode --CityPrefix --StateAbbr --CountryCode --Latitude -sn --street-name --street-address --Longitude --Postcode --Country --ZipCodeByState --CitySuffix -c --city --secondary-address --StreetSuffix --State --String --PostcodeByState --TimeZone)"{'*-sn','*--street-name'}'[generates StreetName field]' \
+                "($I --BuildingNumber --ZipCode --CityPrefix --StateAbbr --CountryCode --Latitude -sn --street-name --street-address --Longitude --Postcode --Country --ZipCodeByState --CitySuffix -c --city --secondary-address --StreetSuffix --State --String --PostcodeByState --TimeZone)"'*--street-address''[generates StreetAddress field]' \
+                "($I --BuildingNumber --ZipCode --CityPrefix --StateAbbr --CountryCode --Latitude -sn --street-name --street-address --Longitude --Postcode --Country --ZipCodeByState --CitySuffix -c --city --secondary-address --StreetSuffix --State --String --PostcodeByState --TimeZone)"'*--Longitude''[generates Longitude field]' \
+                "($I --BuildingNumber --ZipCode --CityPrefix --StateAbbr --CountryCode --Latitude -sn --street-name --street-address --Longitude --Postcode --Country --ZipCodeByState --CitySuffix -c --city --secondary-address --StreetSuffix --State --String --PostcodeByState --TimeZone)"'*--Postcode''[generates Postcode field]' \
+                "($I --BuildingNumber --ZipCode --CityPrefix --StateAbbr --CountryCode --Latitude -sn --street-name --street-address --Longitude --Postcode --Country --ZipCodeByState --CitySuffix -c --city --secondary-address --StreetSuffix --State --String --PostcodeByState --TimeZone)"'*--Country''[generates Country field]' \
+                "($I --BuildingNumber --ZipCode --CityPrefix --StateAbbr --CountryCode --Latitude -sn --street-name --street-address --Longitude --Postcode --Country --ZipCodeByState --CitySuffix -c --city --secondary-address --StreetSuffix --State --String --PostcodeByState --TimeZone)"'*--ZipCodeByState''[generates ZipCodeByState field]' \
+                "($I --BuildingNumber --ZipCode --CityPrefix --StateAbbr --CountryCode --Latitude -sn --street-name --street-address --Longitude --Postcode --Country --ZipCodeByState --CitySuffix -c --city --secondary-address --StreetSuffix --State --String --PostcodeByState --TimeZone)"'*--CitySuffix''[generates CitySuffix field]' \
+                "($I --BuildingNumber --ZipCode --CityPrefix --StateAbbr --CountryCode --Latitude -sn --street-name --street-address --Longitude --Postcode --Country --ZipCodeByState --CitySuffix -c --city --secondary-address --StreetSuffix --State --String --PostcodeByState --TimeZone)"{'*-c','*--city'}'[generates City field]' \
+                "($I --BuildingNumber --ZipCode --CityPrefix --StateAbbr --CountryCode --Latitude -sn --street-name --street-address --Longitude --Postcode --Country --ZipCodeByState --CitySuffix -c --city --secondary-address --StreetSuffix --State --String --PostcodeByState --TimeZone)"'*--secondary-address''[generates SecondaryAddress field]' \
+                "($I --BuildingNumber --ZipCode --CityPrefix --StateAbbr --CountryCode --Latitude -sn --street-name --street-address --Longitude --Postcode --Country --ZipCodeByState --CitySuffix -c --city --secondary-address --StreetSuffix --State --String --PostcodeByState --TimeZone)"'*--StreetSuffix''[generates StreetSuffix field]' \
+                "($I --BuildingNumber --ZipCode --CityPrefix --StateAbbr --CountryCode --Latitude -sn --street-name --street-address --Longitude --Postcode --Country --ZipCodeByState --CitySuffix -c --city --secondary-address --StreetSuffix --State --String --PostcodeByState --TimeZone)"'*--State''[generates State field]' \
+                "($I --BuildingNumber --ZipCode --CityPrefix --StateAbbr --CountryCode --Latitude -sn --street-name --street-address --Longitude --Postcode --Country --ZipCodeByState --CitySuffix -c --city --secondary-address --StreetSuffix --State --String --PostcodeByState --TimeZone)"'*--String''[generates String field]' \
+                "($I --BuildingNumber --ZipCode --CityPrefix --StateAbbr --CountryCode --Latitude -sn --street-name --street-address --Longitude --Postcode --Country --ZipCodeByState --CitySuffix -c --city --secondary-address --StreetSuffix --State --String --PostcodeByState --TimeZone)"'*--PostcodeByState''[generates PostcodeByState field]' \
+                "($I --BuildingNumber --ZipCode --CityPrefix --StateAbbr --CountryCode --Latitude -sn --street-name --street-address --Longitude --Postcode --Country --ZipCodeByState --CitySuffix -c --city --secondary-address --StreetSuffix --State --String --PostcodeByState --TimeZone)"'*--TimeZone''[generates TimeZone field]'
+}
+
+__faker_app() {
+    typeset -A opt_args
+    local context curcontext="$curcontext" state line ret=0
+    local I="-h --help --version -V -#"
+    local -a commands
+    _arguments -s \
+                "($I -n --name -vv --version -a --author -ss --string)"{'*-n','*--name'}'[generates Name field]' \
+                "($I -n --name -vv --version -a --author -ss --string)"{'*-vv','*--version'}'[generates Version field]' \
+                "($I -n --name -vv --version -a --author -ss --string)"{'*-a','*--author'}'[generates Author field]' \
+                "($I -n --name -vv --version -a --author -ss --string)"{'*-ss','*--string'}'[generates String field]'
+}
+
+__faker_avatar() {
+    typeset -A opt_args
+    local context curcontext="$curcontext" state line ret=0
+    local I="-h --help --version -V -#"
+    local -a commands
+    _arguments -s \
+                "($I -jpg --jpeg -png --png -ss --string)"{'*-jpg','*--jpeg'}'[generates JPEG field]' \
+                "($I -jpg --jpeg -png --png -ss --string)"{'*-png','*--png'}'[generates PNG field]' \
+                "($I -jpg --jpeg -png --png -ss --string)"{'*-ss','*--string'}'[generates String field]' \
+                "($I -W= --width=)"{'*-W=','*--width='}'[image width]' \
+                "($I -H= --height=)"{'*-H=','*--height='}'[image height]'
+}
+
+__faker_bitcoin() {
+    typeset -A opt_args
+    local context curcontext="$curcontext" state line ret=0
+    local I="-h --help --version -V -#"
+    local -a commands
+    _arguments -s \
+                "($I -a --address -ss --string)"{'*-a','*--address'}'[generates Address field]' \
+                "($I -a --address -ss --string)"{'*-ss','*--string'}'[generates String field]'
+}
+
+__faker_business() {
+    typeset -A opt_args
+    local context curcontext="$curcontext" state line ret=0
+    local I="-h --help --version -V -#"
+    local -a commands
+    _arguments -s \
+                "($I -ccn --credit-card-number -cced --credit-card-expiry-date -cct --credit-card-type)"{'*-ccn','*--credit-card-number'}'[generates CreditCardNumber field]' \
+                "($I -ccn --credit-card-number -cced --credit-card-expiry-date -cct --credit-card-type)"{'*-cced','*--credit-card-expiry-date'}'[generates CreditCardExpiryDate field]' \
+                "($I -ccn --credit-card-number -cced --credit-card-expiry-date -cct --credit-card-type)"{'*-cct','*--credit-card-type'}'[generates CreditCardType field]'
+}
+
+__faker_code() {
+    typeset -A opt_args
+    local context curcontext="$curcontext" state line ret=0
+    local I="-h --help --version -V -#"
+    local -a commands
+    _arguments -s \
+                "($I -10 --isbn10 -13 --isbn13 -e13 --ean13 -e8 --ean8 -r --rut -a --abn)"{'*-10','*--isbn10'}'[generates a ISBN10 code]' \
+                "($I -10 --isbn10 -13 --isbn13 -e13 --ean13 -e8 --ean8 -r --rut -a --abn)"{'*-13','*--isbn13'}'[generates a ISBN13 code]' \
+                "($I -10 --isbn10 -13 --isbn13 -e13 --ean13 -e8 --ean8 -r --rut -a --abn)"{'*-e13','*--ean13'}'[generates a EAN13 code]' \
+                "($I -10 --isbn10 -13 --isbn13 -e13 --ean13 -e8 --ean8 -r --rut -a --abn)"{'*-e8','*--ean8'}'[generates a EAN8 code]' \
+                "($I -10 --isbn10 -13 --isbn13 -e13 --ean13 -e8 --ean8 -r --rut -a --abn)"{'*-r','*--rut'}'[generates a RUT code]' \
+                "($I -10 --isbn10 -13 --isbn13 -e13 --ean13 -e8 --ean8 -r --rut -a --abn)"{'*-a','*--abn'}'[generates a ABN code]'
+}
+
+__faker_commerce() {
+    typeset -A opt_args
+    local context curcontext="$curcontext" state line ret=0
+    local I="-h --help --version -V -#"
+    local -a commands
+    _arguments -s \
+                "($I -pn --product-name -d --department -pr --price -c --color)"{'*-pn','*--product-name'}'[generates ProductName field]' \
+                "($I -pn --product-name -d --department -pr --price -c --color)"{'*-d','*--department'}'[generates Department field]' \
+                "($I -pn --product-name -d --department -pr --price -c --color)"{'*-pr','*--price'}'[generates Price field]' \
+                "($I -pn --product-name -d --department -pr --price -c --color)"{'*-c','*--color'}'[generates Color field]'
+}
+
+__faker_company() {
+    typeset -A opt_args
+    local context curcontext="$curcontext" state line ret=0
+    local I="-h --help --version -V -#"
+    local -a commands
+    _arguments -s \
+                "($I -ein --ein -dn --duns-number -l --logo -ss --string -n --name -s --suffix -cp --catch-phrase -bs --bs)"{'*-ein','*--ein'}'[generates Ein field]' \
+                "($I -ein --ein -dn --duns-number -l --logo -ss --string -n --name -s --suffix -cp --catch-phrase -bs --bs)"{'*-dn','*--duns-number'}'[generates DunsNumber field]' \
+                "($I -ein --ein -dn --duns-number -l --logo -ss --string -n --name -s --suffix -cp --catch-phrase -bs --bs)"{'*-l','*--logo'}'[generates Logo field]' \
+                "($I -ein --ein -dn --duns-number -l --logo -ss --string -n --name -s --suffix -cp --catch-phrase -bs --bs)"{'*-ss','*--string'}'[generates String field]' \
+                "($I -ein --ein -dn --duns-number -l --logo -ss --string -n --name -s --suffix -cp --catch-phrase -bs --bs)"{'*-n','*--name'}'[generates Name field]' \
+                "($I -ein --ein -dn --duns-number -l --logo -ss --string -n --name -s --suffix -cp --catch-phrase -bs --bs)"{'*-s','*--suffix'}'[generates Suffix field]' \
+                "($I -ein --ein -dn --duns-number -l --logo -ss --string -n --name -s --suffix -cp --catch-phrase -bs --bs)"{'*-cp','*--catch-phrase'}'[generates CatchPhrase field]' \
+                "($I -ein --ein -dn --duns-number -l --logo -ss --string -n --name -s --suffix -cp --catch-phrase -bs --bs)"{'*-bs','*--bs'}'[generates Bs field]'
+}
+
+__faker_finance() {
+    typeset -A opt_args
+    local context curcontext="$curcontext" state line ret=0
+    local I="-h --help --version -V -#"
+    local -a commands
+    _arguments -s \
+                "($I -v --visa -m --mastercard -a --american_express -d --diners_club -di --discover -ma --maestro -s --switch -so --solo -f --forbrugsforeningen -dk --dankort -l --laser)"{'*-v','*--visa'}'[generates a visa code]' \
+                "($I -v --visa -m --mastercard -a --american_express -d --diners_club -di --discover -ma --maestro -s --switch -so --solo -f --forbrugsforeningen -dk --dankort -l --laser)"{'*-m','*--mastercard'}'[generates a mastercard code]' \
+                "($I -v --visa -m --mastercard -a --american_express -d --diners_club -di --discover -ma --maestro -s --switch -so --solo -f --forbrugsforeningen -dk --dankort -l --laser)"{'*-a','*--american_express'}'[generates a american_express code]' \
+                "($I -v --visa -m --mastercard -a --american_express -d --diners_club -di --discover -ma --maestro -s --switch -so --solo -f --forbrugsforeningen -dk --dankort -l --laser)"{'*-d','*--diners_club'}'[generates a diners_club code]' \
+                "($I -v --visa -m --mastercard -a --american_express -d --diners_club -di --discover -ma --maestro -s --switch -so --solo -f --forbrugsforeningen -dk --dankort -l --laser)"{'*-di','*--discover'}'[generates a discover code]' \
+                "($I -v --visa -m --mastercard -a --american_express -d --diners_club -di --discover -ma --maestro -s --switch -so --solo -f --forbrugsforeningen -dk --dankort -l --laser)"{'*-ma','*--maestro'}'[generates a maestro code]' \
+                "($I -v --visa -m --mastercard -a --american_express -d --diners_club -di --discover -ma --maestro -s --switch -so --solo -f --forbrugsforeningen -dk --dankort -l --laser)"{'*-s','*--switch'}'[generates a switch code]' \
+                "($I -v --visa -m --mastercard -a --american_express -d --diners_club -di --discover -ma --maestro -s --switch -so --solo -f --forbrugsforeningen -dk --dankort -l --laser)"{'*-so','*--solo'}'[generates a solo code]' \
+                "($I -v --visa -m --mastercard -a --american_express -d --diners_club -di --discover -ma --maestro -s --switch -so --solo -f --forbrugsforeningen -dk --dankort -l --laser)"{'*-f','*--forbrugsforeningen'}'[generates a forbrugsforeningen code]' \
+                "($I -v --visa -m --mastercard -a --american_express -d --diners_club -di --discover -ma --maestro -s --switch -so --solo -f --forbrugsforeningen -dk --dankort -l --laser)"{'*-dk','*--dankort'}'[generates a dankort code]' \
+                "($I -v --visa -m --mastercard -a --american_express -d --diners_club -di --discover -ma --maestro -s --switch -so --solo -f --forbrugsforeningen -dk --dankort -l --laser)"{'*-l','*--laser'}'[generates a laser code]'
+}
+
+__faker_hacker() {
+
+}
+
+__faker_hacker_phrases() {
+
+}
+
+__faker_hacker_phrases_colored() {
+
+}
+
+__faker_hacker_phrases_colored_piped() {
+    typeset -A opt_args
+    local context curcontext="$curcontext" state line ret=0
+    local I="-h --help --version -V -#"
+    local -a commands
+    _arguments -s \
+                "($I -j --just-in-time)"{'*-j','*--just-in-time'}'[render the char from pipe one-by-one (just-in-time)]'
+}
+
+__faker_internet() {
+    typeset -A opt_args
+    local context curcontext="$curcontext" state line ret=0
+    local I="-h --help --version -V -#"
+    local -a commands
+    _arguments -s \
+                "($I -ss --slug -se --safe-email -p --password -dw --domain-word -ds --domain-suffix -ip6 --ip-v6-address -u --url -em --email -fe --free-email -un --user-name -dn --domain-name -m --mac-address -ip --ip-v4-address)"{'*-ss','*--slug'}'[generates Slug field]' \
+                "($I -ss --slug -se --safe-email -p --password -dw --domain-word -ds --domain-suffix -ip6 --ip-v6-address -u --url -em --email -fe --free-email -un --user-name -dn --domain-name -m --mac-address -ip --ip-v4-address)"{'*-se','*--safe-email'}'[generates SafeEmail field]' \
+                "($I -ss --slug -se --safe-email -p --password -dw --domain-word -ds --domain-suffix -ip6 --ip-v6-address -u --url -em --email -fe --free-email -un --user-name -dn --domain-name -m --mac-address -ip --ip-v4-address)"{'*-p','*--password'}'[generates Password field]' \
+                "($I -ss --slug -se --safe-email -p --password -dw --domain-word -ds --domain-suffix -ip6 --ip-v6-address -u --url -em --email -fe --free-email -un --user-name -dn --domain-name -m --mac-address -ip --ip-v4-address)"{'*-dw','*--domain-word'}'[generates DomainWord field]' \
+                "($I -ss --slug -se --safe-email -p --password -dw --domain-word -ds --domain-suffix -ip6 --ip-v6-address -u --url -em --email -fe --free-email -un --user-name -dn --domain-name -m --mac-address -ip --ip-v4-address)"{'*-ds','*--domain-suffix'}'[generates DomainSuffix field]' \
+                "($I -ss --slug -se --safe-email -p --password -dw --domain-word -ds --domain-suffix -ip6 --ip-v6-address -u --url -em --email -fe --free-email -un --user-name -dn --domain-name -m --mac-address -ip --ip-v4-address)"{'*-ip6','*--ip-v6-address'}'[generates IpV6Address field]' \
+                "($I -ss --slug -se --safe-email -p --password -dw --domain-word -ds --domain-suffix -ip6 --ip-v6-address -u --url -em --email -fe --free-email -un --user-name -dn --domain-name -m --mac-address -ip --ip-v4-address)"{'*-u','*--url'}'[generates Url field]' \
+                "($I -ss --slug -se --safe-email -p --password -dw --domain-word -ds --domain-suffix -ip6 --ip-v6-address -u --url -em --email -fe --free-email -un --user-name -dn --domain-name -m --mac-address -ip --ip-v4-address)"{'*-em','*--email'}'[generates Email field]' \
+                "($I -ss --slug -se --safe-email -p --password -dw --domain-word -ds --domain-suffix -ip6 --ip-v6-address -u --url -em --email -fe --free-email -un --user-name -dn --domain-name -m --mac-address -ip --ip-v4-address)"{'*-fe','*--free-email'}'[generates FreeEmail field]' \
+                "($I -ss --slug -se --safe-email -p --password -dw --domain-word -ds --domain-suffix -ip6 --ip-v6-address -u --url -em --email -fe --free-email -un --user-name -dn --domain-name -m --mac-address -ip --ip-v4-address)"{'*-un','*--user-name'}'[generates UserName field]' \
+                "($I -ss --slug -se --safe-email -p --password -dw --domain-word -ds --domain-suffix -ip6 --ip-v6-address -u --url -em --email -fe --free-email -un --user-name -dn --domain-name -m --mac-address -ip --ip-v4-address)"{'*-dn','*--domain-name'}'[generates DomainName field]' \
+                "($I -ss --slug -se --safe-email -p --password -dw --domain-word -ds --domain-suffix -ip6 --ip-v6-address -u --url -em --email -fe --free-email -un --user-name -dn --domain-name -m --mac-address -ip --ip-v4-address)"{'*-m','*--mac-address'}'[generates MacAddress field]' \
+                "($I -ss --slug -se --safe-email -p --password -dw --domain-word -ds --domain-suffix -ip6 --ip-v6-address -u --url -em --email -fe --free-email -un --user-name -dn --domain-name -m --mac-address -ip --ip-v4-address)"{'*-ip','*--ip-v4-address'}'[generates IpV4Address field]' \
+                "($I -min= --min=)"{'*-min=','*--min='}'[minimal length of Password field]' \
+                "($I -max= --max=)"{'*-max=','*--max='}'[maximal length of Password field]'
+}
+
+__faker_lorem() {
+    typeset -A opt_args
+    local context curcontext="$curcontext" state line ret=0
+    local I="-h --help --version -V -#"
+    local -a commands
+    _arguments -s \
+                "($I -ss --sentences -c --character -cc --characters -w --word -ww --words -s --sentence)"{'*-ss','*--sentences'}'[generates Sentences field]' \
+                "($I -ss --sentences -c --character -cc --characters -w --word -ww --words -s --sentence)"{'*-c','*--character'}'[generates Character field]' \
+                "($I -ss --sentences -c --character -cc --characters -w --word -ww --words -s --sentence)"{'*-cc','*--characters'}'[generates Characters field]' \
+                "($I -ss --sentences -c --character -cc --characters -w --word -ww --words -s --sentence)"{'*-w','*--word'}'[generates word field]' \
+                "($I -ss --sentences -c --character -cc --characters -w --word -ww --words -s --sentence)"{'*-ww','*--words'}'[generates Words field]' \
+                "($I -ss --sentences -c --character -cc --characters -w --word -ww --words -s --sentence)"{'*-s','*--sentence'}'[generates Sentence field]' \
+                "($I -l= --length=)"{'*-l=','*--length='}'[characters length]' \
+                "($I -C= --count=)"{'*-C=','*--count='}'[words count]'
+}
+
+__faker_name() {
+    typeset -A opt_args
+    local context curcontext="$curcontext" state line ret=0
+    local I="-h --help --version -V -#"
+    local -a commands
+    _arguments -s \
+                "($I -f --first-name -l --last-name -p --prefix -s --suffix -t --title -ss --string -n --name)"{'*-f','*--first-name'}'[generates FirstName field]' \
+                "($I -f --first-name -l --last-name -p --prefix -s --suffix -t --title -ss --string -n --name)"{'*-l','*--last-name'}'[generates LastName field]' \
+                "($I -f --first-name -l --last-name -p --prefix -s --suffix -t --title -ss --string -n --name)"{'*-p','*--prefix'}'[generates Prefix field]' \
+                "($I -f --first-name -l --last-name -p --prefix -s --suffix -t --title -ss --string -n --name)"{'*-s','*--suffix'}'[generates Suffix field]' \
+                "($I -f --first-name -l --last-name -p --prefix -s --suffix -t --title -ss --string -n --name)"{'*-t','*--title'}'[generates Title field]' \
+                "($I -f --first-name -l --last-name -p --prefix -s --suffix -t --title -ss --string -n --name)"{'*-ss','*--string'}'[generates String field]' \
+                "($I -f --first-name -l --last-name -p --prefix -s --suffix -t --title -ss --string -n --name)"{'*-n','*--name'}'[generates Name field]'
+}
+
+__faker_number() {
+    typeset -A opt_args
+    local context curcontext="$curcontext" state line ret=0
+    local I="-h --help --version -V -#"
+    local -a commands
+    _arguments -s \
+                "($I -ni32 --number-int32 -ni64 --number-int64 -h --hexadecimal -nn --negative -n --number -ni --number-int -dec --decimal -d --digit -be --between -pp --positive)"{'*-ni32','*--number-int32'}'[generates NumberInt32 field]' \
+                "($I -ni32 --number-int32 -ni64 --number-int64 -h --hexadecimal -nn --negative -n --number -ni --number-int -dec --decimal -d --digit -be --between -pp --positive)"{'*-ni64','*--number-int64'}'[generates NumberInt64 field]' \
+                "($I -ni32 --number-int32 -ni64 --number-int64 -h --hexadecimal -nn --negative -n --number -ni --number-int -dec --decimal -d --digit -be --between -pp --positive)"{'*-h','*--hexadecimal'}'[generates Hexadecimal field]' \
+                "($I -ni32 --number-int32 -ni64 --number-int64 -h --hexadecimal -nn --negative -n --number -ni --number-int -dec --decimal -d --digit -be --between -pp --positive)"{'*-nn','*--negative'}'[generates Negative field]' \
+                "($I -ni32 --number-int32 -ni64 --number-int64 -h --hexadecimal -nn --negative -n --number -ni --number-int -dec --decimal -d --digit -be --between -pp --positive)"{'*-n','*--number'}'[generates Number field]' \
+                "($I -ni32 --number-int32 -ni64 --number-int64 -h --hexadecimal -nn --negative -n --number -ni --number-int -dec --decimal -d --digit -be --between -pp --positive)"{'*-ni','*--number-int'}'[generates NumberInt field]' \
+                "($I -ni32 --number-int32 -ni64 --number-int64 -h --hexadecimal -nn --negative -n --number -ni --number-int -dec --decimal -d --digit -be --between -pp --positive)"{'*-dec','*--decimal'}'[generates Decimal field]' \
+                "($I -ni32 --number-int32 -ni64 --number-int64 -h --hexadecimal -nn --negative -n --number -ni --number-int -dec --decimal -d --digit -be --between -pp --positive)"{'*-d','*--digit'}'[generates Digit field]' \
+                "($I -ni32 --number-int32 -ni64 --number-int64 -h --hexadecimal -nn --negative -n --number -ni --number-int -dec --decimal -d --digit -be --between -pp --positive)"{'*-be','*--between'}'[generates Between field]' \
+                "($I -ni32 --number-int32 -ni64 --number-int64 -h --hexadecimal -nn --negative -n --number -ni --number-int -dec --decimal -d --digit -be --between -pp --positive)"{'*-pp','*--positive'}'[generates Positive field]' \
+                "($I -C= --count=)"{'*-C=','*--count='}'[number count for these fields\: NumberXXX, Hexadecimal]' \
+                "($I -P= --precision=)"{'*-P=','*--precision='}'[float number precision for Decimal field]' \
+                "($I -S= --scale=)"{'*-S=','*--scale='}'[float number scale for Decimal field]' \
+                "($I -lb= --lower-bound=)"{'*-lb=','*--lower-bound='}'[lower bound for these fields\: Between, Positive, Negative]' \
+                "($I -ub= --upper-bound=)"{'*-ub=','*--upper-bound='}'[upper bound for these fields\: Between, Positive, Negative]'
+}
+
+__faker_phone_number() {
+    typeset -A opt_args
+    local context curcontext="$curcontext" state line ret=0
+    local I="-h --help --version -V -#"
+    local -a commands
+    _arguments -s \
+                "($I -cp --call-phone -an --area-code -ec --exchange-code -ss --string -sn --subscriber-number -pn --phone-number)"{'*-cp','*--call-phone'}'[generates CellPhone field]' \
+                "($I -cp --call-phone -an --area-code -ec --exchange-code -ss --string -sn --subscriber-number -pn --phone-number)"{'*-an','*--area-code'}'[generates AreaCode field]' \
+                "($I -cp --call-phone -an --area-code -ec --exchange-code -ss --string -sn --subscriber-number -pn --phone-number)"{'*-ec','*--exchange-code'}'[generates ExchangeCode field]' \
+                "($I -cp --call-phone -an --area-code -ec --exchange-code -ss --string -sn --subscriber-number -pn --phone-number)"{'*-ss','*--string'}'[generates String field]' \
+                "($I -cp --call-phone -an --area-code -ec --exchange-code -ss --string -sn --subscriber-number -pn --phone-number)"{'*-sn','*--subscriber-number'}'[generates SubscriberNumber field]' \
+                "($I -cp --call-phone -an --area-code -ec --exchange-code -ss --string -sn --subscriber-number -pn --phone-number)"{'*-pn','*--phone-number'}'[generates PhoneNumber field]' \
+                "($I -C= --count=)"{'*-C=','*--count='}'[number count for these fields\: NumberXXX, Hexadecimal]'
+}
+
+__faker_team() {
+    typeset -A opt_args
+    local context curcontext="$curcontext" state line ret=0
+    local I="-h --help --version -V -#"
+    local -a commands
+    _arguments -s \
+                "($I -n --name -c --creature -st --state -ss --string)"{'*-n','*--name'}'[generates Name field]' \
+                "($I -n --name -c --creature -st --state -ss --string)"{'*-c','*--creature'}'[generates Creature field]' \
+                "($I -n --name -c --creature -st --state -ss --string)"{'*-st','*--state'}'[generates State field]' \
+                "($I -n --name -c --creature -st --state -ss --string)"{'*-ss','*--string'}'[generates String field]' \
+                "($I -C= --count=)"{'*-C=','*--count='}'[number count for these fields\: NumberXXX, Hexadecimal]'
+}
+
+__faker_version() {
+
+}
+
+__faker_generate() {
+    typeset -A opt_args
+    local -a commands
+    local context curcontext="$curcontext" line state ret=0
+    local I="-h --help --version -V -#"
+
+    _arguments -s -C : \
+               "1: :->cmds" \
+               "*::arg:->args" \
+               && ret=0
+    case "$state" in
+        cmds)
+            commands=(
+                {s,shell}':generate the bash/zsh auto-completion script or install it.'
+                {m,manual}':generate linux man page.'
+                {d,doc}':generate a markdown document, or\: pdf/TeX/...'
+            )
+            __faker_debug "_describe '[faker generate]': ${commands[@]}"
+            _describe -t commands '[faker generate] commands' commands "$@"
+            ;;
+        args)
+            case $line[1] in
+            s|shell|sh)
+                __faker_generate_shell
+                ;;
+            m|manual|man)
+                __faker_generate_manual
+                ;;
+            d|doc|pdf|docx|tex|markdown)
+                __faker_generate_doc
+                ;;
+
+            esac
+            ;;
+    esac
+}
+
+__faker_generate_shell() {
+    typeset -A opt_args
+    local context curcontext="$curcontext" state line ret=0
+    local I="-h --help --version -V -#"
+    local -a commands
+    _arguments -s \
+                "($I -a --auto -b --bash -z --zsh -f --fish -p --powershell)"{'*-a','*--auto'}'[generate auto completion script to fit for your current env.]' \
+                "($I -a --auto -b --bash -z --zsh -f --fish -p --powershell)"{'*-b','*--bash'}'[generate auto completion script for Bash]' \
+                "($I -a --auto -b --bash -z --zsh -f --fish -p --powershell)"{'*-z','*--zsh'}'[generate auto completion script for Zsh]' \
+                "($I -a --auto -b --bash -z --zsh -f --fish -p --powershell)"{'*-f','*--fish'}'[generate auto completion script for Fish]' \
+                "($I -a --auto -b --bash -z --zsh -f --fish -p --powershell)"{'*-p','*--powershell'}'[generate auto completion script for Powershell]' \
+                "(-d= --dir=)"{'*-d=','*--dir='}'[the output directory]':DIR:'_files -/' \
+                "($I --force-bash)"'*--force-bash''[just for --auto]'
+}
+
+__faker_generate_manual() {
+    typeset -A opt_args
+    local context curcontext="$curcontext" state line ret=0
+    local I="-h --help --version -V -#"
+    local -a commands
+    _arguments -s \
+                "(-d= --dir=)"{'*-d=','*--dir='}'[the output directory]':DIR:'_files -/'
+}
+
+__faker_generate_doc() {
+    typeset -A opt_args
+    local context curcontext="$curcontext" state line ret=0
+    local I="-h --help --version -V -#"
+    local -a commands
+    _arguments -s \
+                "($I -md --markdown -p --pdf --docx -t --tex)"{'*-md','*--markdown'}'[to generate a markdown file]' \
+                "($I -md --markdown -p --pdf --docx -t --tex)"{'*-p','*--pdf'}'[to generate a PDF file]' \
+                "($I -md --markdown -p --pdf --docx -t --tex)"'*--docx''[to generate a Word (.docx) file]' \
+                "($I -md --markdown -p --pdf --docx -t --tex)"{'*-t','*--tex'}'[to generate a LaTeX file]' \
+                "(-d= --dir=)"{'*-d=','*--dir='}'[the output directory]':DIR:'_files -/'
+}
+
+
+# don't run the completion function when being source-ed or eval-ed
+if [ "$funcstack[1]" = "_faker" ]; then
+	_faker
+fi
+
+# Local Variables:
+# mode: Shell-Script
+# sh-indentation: 2
+# indent-tabs-mode: nil
+# sh-basic-offset: 2
+# End:
+# vim: ft=zsh sw=2 ts=2 et# '-' generated.
+# Re-login to enable the new bash completion script.

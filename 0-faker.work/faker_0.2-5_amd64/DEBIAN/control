@@ -1,0 +1,14 @@
+Package: faker
+Version: 0.2.5
+Section: utils
+Priority: extra
+Architecture: amd64
+Multi-Arch: foreign
+Depends: debconf (>= 0.2.26)
+Build-Depends: debhelper (>=9)
+Standards-Version: 3.9.6
+Maintainer: Hedzr Yeh <hedzrz@gmail.com>
+Homepage: https://github.com/hedzr/go-faker
+Description: faked records generator.
+  faker is a CLI app for generating the faked records
+  such as names, addresses, and phone numbers.

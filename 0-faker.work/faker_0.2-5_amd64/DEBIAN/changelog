@@ -1,0 +1,6 @@
+faker (0.2.5-1) UNRELEASED; urgency=low
+
+  * Initial release. Closes: #nnnn
+    <nnnn is the bug number of your ITP>
+
+ -- Hedzr Yeh <hedzrz@gmail.com>  Mon, 30 Nov 2020 00:48:43 +0000
