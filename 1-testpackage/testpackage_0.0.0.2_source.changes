@@ -1,0 +1,45 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Format: 1.8
+Date: Tue, 08 Dec 2021 09:28:35 +0000
+Source: testpackage
+Architecture: source
+Version: 0.0.0.2
+Distribution: focal
+Urgency: medium
+Maintainer: hedzr (hz, hedzr) <hedzrz@gmail.com>
+Changed-By: hedzr <hedzrz@gmail.com>
+Changes:
+ testpackage (0.0.0.2) focal; urgency=medium
+ .
+   * Updated: build error in source codes
+Checksums-Sha1:
+ a7cd151d70c8c1cf63772dfda758141f69466af7 1569 testpackage_0.0.0.2.dsc
+ fff85130a69dd7c9d2ae37f1cb29a1a7e794831b 7472 testpackage_0.0.0.2.tar.xz
+ 0f383f01a2effaf0f3031b459619d9df62e563d6 6199 testpackage_0.0.0.2_source.buildinfo
+Checksums-Sha256:
+ 1551ba13c235e9602f42240b808e5ceb346d3a2c819831fae10b20e8c04bb7f7 1569 testpackage_0.0.0.2.dsc
+ 8b9462704032beb91a18d1367dbc1a2287f1e07781322775d3a5a7cf04f28589 7472 testpackage_0.0.0.2.tar.xz
+ be90781d7708a198c8387966b420922e68a4d5e2f61126ad4e8ea7aa7e0e276e 6199 testpackage_0.0.0.2_source.buildinfo
+Files:
+ b7069701165f13778b87a39bc8f4e467 1569 utils optional testpackage_0.0.0.2.dsc
+ c148a903b5721daa42ac65f35ac91592 7472 utils optional testpackage_0.0.0.2.tar.xz
+ e71db85f949bc13500869b2a56fa1951 6199 utils optional testpackage_0.0.0.2_source.buildinfo
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCgAdFiEENiYipDzGfVM/+9M/Lm938hevubEFAmGwCoQACgkQLm938hev
+ubELORAAhcB8tcoyqZcktkF9ZBO84w8zGW6cdKHV4zxzL15/GbhmfP33ijZKqLHO
+fPGQwMF1sKQKPJYeXZCAuWzm1DdJW8ZsnYL1e8LZS/4ojool3FlpSYgQgDyEp2hf
+SoIzM3TKylKK0znadUHjao4BsixQxR1wwRHklXYfGIPKSsAfrmL8761kb8/PuoiB
+KrXzh8lu5mRYi9lWsoYrjeGzKCoxaoUjB4f29XC7EFiwsnuNd27lJTRyKj5QcuSl
+5FfcF1BSwpcVB7Jm8TzmxKP5kK9nGWMoa26jX+zLtnRr3C1kebknOYFO/QBOXIO0
+VSD96SAKah8T0OERx8DsEyiSHjFRbsK93PmBrkDagdx0MVDwV2ErOxi/FQModEow
+10IO/YraLuSETYk/eSIggljDIK9qY7G+OysgQ+MEQrZ4ndLxpTC80pdoen2EbXKT
+qPzr7spDkqe3k1YGGjvZZoNNalLbGbEbHFy4w3IB5NUbwZG14BB7IPU4ql8LtsEQ
+aizVhGmsXKH6fTMOlH+EAkYuHlXge4tsi9oKACFzwpVe2I+v5AZDPEA5AvOWPQdx
+ckHRiEZtEm7LxhzEqOGIck12oq2odDaZkZLLXKfbg6fBli+3Km58pxJKHCKF1N3O
+v9lzTXGxMlrWxThLfSdU0P0yR/SynAWhOeZE/2F72ojHxoCPb2k=
+=0c6X
+-----END PGP SIGNATURE-----

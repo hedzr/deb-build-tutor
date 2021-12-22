@@ -1,0 +1,11 @@
+testpackage (0.0.0.2) focal; urgency=medium
+
+  * Updated: build error in source codes
+
+ -- hedzr <hedzrz@gmail.com>  Tue, 08 Dec 2021 09:28:35 +0000
+
+testpackage (0.0.0.1) focal; urgency=medium
+
+  * Initial Release.
+
+ -- hedzr <hedzrz@gmail.com>  Tue, 07 Dec 2021 09:36:35 +0000
